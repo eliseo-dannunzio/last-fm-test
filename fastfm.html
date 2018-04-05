@@ -1,0 +1,62 @@
+<html ng-app="fastFM" lang="en">
+
+<head>
+    <title>fastFM Popular Artist test</title>
+    <!-- link rel="stylesheet" type="text/css" href="bootstrap.min.css"></link-->
+    <script src="angular.min.js" type="text/javascript"></script>
+    <script src="fastfm.js" type="text/javascript"></script>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+
+    <div class="container-fluid outerdiv" ng-app="myApp" ng-controller="MusicController">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-link">
+                    fast FM Popular Artist Search
+                </div>
+            </div>
+        </nav>
+
+        <div class="form-group">
+
+            <select ng-model="allCountries.selectedCountry">
+              <option value="">Select Country</option>
+              <option ng-repeat="item in Countries.data" value="{{item.name}}">{{item.name}}</option>
+            </select>
+
+        </div>
+
+        <div id="main-info" class="col-md-8">
+            <div ng-if="(!details) && (allCountries!=undefined)">
+                Loading results...
+            </div>
+
+            <div ng-if="details.response===true && details.total!=0">
+
+                <h1>Popular Artists in {{details.country}}</h1>
+
+                  <div id="prev" onclick="goPrev();">Prev</div> <div id="next" onclick="goNext();">Next</div>
+                  <input type="text" value="{{details.fromVal}}">
+
+                  <div>
+                    <img src="{{details.NumberOneImg}}" alt="Image of {{details.NumberOne}}">&nbsp;{{details.NumberOne}}<br>
+                    <img src="{{details.NumberTwoImg}}" alt="Image of {{details.NumberTwo}}">&nbsp;{{details.NumberTwo}}<br>
+                    <img src="{{details.NumberThreeImg}}" alt="Image of {{details.NumberThree}}">&nbsp;{{details.NumberThree}}<br>
+                    <img src="{{details.NumberFourImg}}" alt="Image of {{details.NumberFour}}">&nbsp;{{details.NumberFour}}<br>
+                    <img src="{{details.NumberFiveImg}}" alt="Image of {{details.NumberFive}}">&nbsp;{{details.NumberFive}}<br>
+                  </div>
+
+            </div>
+
+            <div ng-if="details.total==0">
+                No results found.
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
